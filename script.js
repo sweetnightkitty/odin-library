@@ -36,8 +36,8 @@ function displayMyLibrary() {
         const card = makeCard();
 
         const title = createDiv("title", myBook.title);
-        const author = createDiv("author", myBook.author);
-        const pages = createDiv("pages", myBook.pages);
+        const author = createDiv("author", "by " + myBook.author);
+        const pages = createDiv("pages", myBook.pages + " pages");
         const status = createDiv("status", myBook.status);
         
         card.appendChild(title);
@@ -51,7 +51,7 @@ function displayMyLibrary() {
 
 displayMyLibrary();
 
-//myBook is going to pass an object - needs an intermediate step
+
 function makeCard() {
     const card = document.createElement("div");
     card.classList.add("card");
