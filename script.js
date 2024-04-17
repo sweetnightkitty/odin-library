@@ -1,5 +1,5 @@
 const container = document.querySelector(".container");
-const openModal = document.querySelector(".modal-btn");
+const openBtn = document.querySelector(".modal-btn");
 const modal = document.querySelector(".modal");
 const closeBtn = document.querySelector(".close");
 const submitBtn = document.querySelector(".submit-form");
@@ -52,7 +52,7 @@ function displayMyLibrary() {
         const author = createDiv("author", "by " + myBook.author);
         const pages = createDiv("pages", myBook.pages + " pages");
         const status = createDiv("status", myBook.status);
-        
+
         //delete button will either take an id number in the createBtn parameter or the dataset.book value
         const deleteBtn = createBtn("delete-btn", "bn" + myBook.number, "Delete");
         deleteBtn.dataset.book = myBook.number;
@@ -92,7 +92,7 @@ function createBtn(className, idName, btnText) {
 }
 
 
-openModal.addEventListener("click", () => {
+openBtn.addEventListener("click", () => {
     modal.style.display = "block";
 })
 
