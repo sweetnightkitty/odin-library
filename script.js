@@ -3,6 +3,7 @@ const openModal = document.querySelector(".modal-btn");
 const modal = document.querySelector(".modal");
 const closeBtn = document.querySelector(".close");
 const submitBtn = document.querySelector(".submit-form");
+const form = document.querySelector(".form");
 
 
 const myLibrary = [
@@ -97,6 +98,8 @@ submitBtn.addEventListener("click", (e) => {
 //form input still here after it opens again later
 function closeModal() {
     modal.style.display = "none";
+    form.reset();
 }
+
 
 displayMyLibrary();
