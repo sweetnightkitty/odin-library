@@ -6,6 +6,13 @@ const myLibrary = [
         author: "Simone Stolzoff",
         pages: 272,
         status: "read",
+    },
+
+    {
+        title: "Feel Good Productivity",
+        author: "Ali Abdaal",
+        pages: 200,
+        status: "currently reading",
     }
 ];
 
