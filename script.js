@@ -33,19 +33,35 @@ function addBookToMyLibrary(title, author, pages, status) {
 
 function displayMyLibrary() {
     for(const myBook of myLibrary) {
-        //const div can be replaced with function makeCard after further adjustments
-        const div = document.createElement("div");
-        div.textContent = myBook.title + myBook.author + myBook.pages + myBook.status;
-        container.appendChild(div);
+        const card = makeCard();
+
+        const title = createDiv("title", myBook.title);
+        const author = createDiv("author", myBook.author);
+        const pages = createDiv("pages", myBook.pages);
+        const status = createDiv("status", myBook.status);
+        
+        card.appendChild(title);
+        card.appendChild(author);
+        card.appendChild(pages);
+        card.appendChild(status);
+
+        container.appendChild(card);
     }
 };
 
 displayMyLibrary();
 
 //myBook is going to pass an object - needs an intermediate step
-function makeCard(myBook) {
+function makeCard() {
     const card = document.createElement("div");
     card.classList.add("card");
-    card.textContent = myBook;
     return card;
 }
+
+function createDiv(className, textContent) {
+    const div = document.createElement("div");
+    div.classList.add(className);
+    div.textContent = textContent;
+    return div;
+}
+
