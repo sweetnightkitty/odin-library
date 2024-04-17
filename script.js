@@ -10,14 +10,15 @@ const radios = document.getElementsByName("readStatus");
 
 
 const myLibrary = [
-    {
+    {   
+        number: 20,
         title: "The Good Enough Job",
         author: "Simone Stolzoff",
         pages: 272,
         status: "Read",
     },
 
-    {
+    {   number: 10,
         title: "Feel Good Productivity",
         author: "Ali Abdaal",
         pages: 200,
@@ -52,11 +53,12 @@ function displayMyLibrary() {
         const status = createDiv("status", myBook.status);
 
         //delete button will either take an id number in the createBtn parameter or the dataset.book value
-        const deleteBtn = createBtn("delete-btn", "bn" + myBook.number, "Delete");
+        const deleteBtn = createBtn("delete-btn", "Delete");
+        deleteBtn.dataset.number = myBook.number;
 
 
         deleteBtn.addEventListener("click", () => {
-            console.log("hello");
+            console.log(deleteBtn.dataset.number);
         })
 
         card.appendChild(title);
@@ -89,10 +91,9 @@ function createDiv(className, textContent) {
     return div;
 }
 
-function createBtn(className, idName, btnText) {
+function createBtn(className, btnText) {
     const btn = document.createElement("button");
     btn.classList.add(className);
-    btn.setAttribute("id", idName);
     btn.textContent = btnText;
     return btn;
 }
