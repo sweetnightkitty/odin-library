@@ -25,7 +25,10 @@ const myLibrary = [
     }
 ];
 
+let bookNumber = 0;
 function Book(title, author, pages, status) {
+    bookNumber += 1;
+    this.number = bookNumber;
     this.title = title;
     this.author = author;
     this.pages = pages;
@@ -48,7 +51,7 @@ function displayMyLibrary() {
         const author = createDiv("author", "by " + myBook.author);
         const pages = createDiv("pages", myBook.pages + " pages");
         const status = createDiv("status", myBook.status);
-        const deleteBtn = createBtn("delete-btn", "Delete");
+        const deleteBtn = createBtn("delete-btn", myBook.number, "Delete");
         
         card.appendChild(title);
         card.appendChild(author);
@@ -57,6 +60,7 @@ function displayMyLibrary() {
         card.appendChild(deleteBtn);
 
         container.appendChild(card);
+        console.log(booksToDelete);
     }
 };
 
@@ -74,9 +78,10 @@ function createDiv(className, textContent) {
     return div;
 }
 
-function createBtn(className, btnText) {
+function createBtn(className, idName, btnText) {
     const btn = document.createElement("button");
     btn.classList.add(className);
+    btn.id = idName;
     btn.textContent = btnText;
     return btn;
 }
@@ -141,6 +146,6 @@ function getStatus(radioSelection) {
 
 booksToDelete.forEach((bookToDelete) => {
     bookToDelete.addEventListener("click", () => {
-        //target this book to delete from book myLibrary array
+        console.log("hello");
     })
 })
