@@ -5,20 +5,21 @@ const closeBtn = document.querySelector(".close");
 const submitBtn = document.querySelector(".submit-form");
 const form = document.querySelector(".form");
 const radios = document.getElementsByName("readStatus");
+let booksToDelete;
 
 
 
 
 const myLibrary = [
     {   
-        number: 20,
+        number: 0,
         title: "The Good Enough Job",
         author: "Simone Stolzoff",
         pages: 272,
         status: "Read",
     },
 
-    {   number: 10,
+    {   number: 1,
         title: "Feel Good Productivity",
         author: "Ali Abdaal",
         pages: 200,
@@ -27,7 +28,7 @@ const myLibrary = [
 ];
 
 //bookNumber and .number may not be necessary
-let bookNumber = 0;
+let bookNumber = 1;
 function Book(title, author, pages, status) {
     bookNumber += 1;
     this.number = bookNumber;
@@ -46,6 +47,8 @@ function addBookToMyLibrary(title, author, pages, status) {
 function displayMyLibrary() {
     for(const myBook of myLibrary) {
         const card = makeCard();
+        card.setAttribute("data-index", myBook.number);
+        console.log(card.dataset.index);
 
         const title = createDiv("title", myBook.title);
         const author = createDiv("author", "by " + myBook.author);
@@ -54,12 +57,7 @@ function displayMyLibrary() {
 
         //delete button will either take an id number in the createBtn parameter or the dataset.book value
         const deleteBtn = createBtn("delete-btn", "Delete");
-        deleteBtn.dataset.number = myBook.number;
-
-
-        deleteBtn.addEventListener("click", () => {
-            console.log(deleteBtn.dataset.number);
-        })
+        deleteBtn.dataset.index = myBook.number;
 
         card.appendChild(title);
         card.appendChild(author);
@@ -69,11 +67,9 @@ function displayMyLibrary() {
         card.appendChild(deleteBtn);
         container.appendChild(card);
 
-        
-
-
-
-
+        //Cannot be defined until after the delete button is added to the card and container
+        booksToDelete = document.querySelectorAll(".delete-btn");
+        console.log(booksToDelete);
     }
 };
 
@@ -139,8 +135,6 @@ submitBtn.addEventListener("click", (e) => {
 
 
 
-displayMyLibrary();
-
 function resetMyLibrary() {
     let totalCards = 0;
 
@@ -156,3 +150,17 @@ function getStatus(radioSelection) {
     if(radioSelection === "read") return "Read";
 }
 
+displayMyLibrary();
+
+
+booksToDelete.forEach((bookToDelete) => {
+    bookToDelete.addEventListener("click", () => {
+        console.log(bookToDelete.dataset.index);
+        const cards = document.querySelectorAll(".card");
+        for (const card of cards) {
+            if (card.dataset.index === bookToDelete.dataset.index) {
+                container.removeChild(card);
+            }
+        }
+    })
+})
