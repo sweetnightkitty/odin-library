@@ -1,4 +1,11 @@
-const myLibrary = [];
+const myLibrary = [
+    {
+        title: "The Good Enough Job",
+        author: "Simone Stolzoff",
+        pages: 272,
+        status: "read",
+    }
+];
 
 function Book(title, author, pages, status) {
     this.title = title;
@@ -15,3 +22,10 @@ function addBookToMyLibrary(title, author, pages, status) {
     myLibrary.push(newBook);
 };
 
+function displayMyLibrary() {
+    for(const myBook of myLibrary) {
+        console.log(myBook);
+    }
+};
+
+displayMyLibrary();
