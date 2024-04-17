@@ -30,6 +30,7 @@ const myLibrary = [
 //bookNumber and .number may not be necessary
 let bookNumber = 1;
 function Book(title, author, pages, status) {
+    //bookNumber does not accurately label index when books are deleted
     bookNumber += 1;
     this.number = bookNumber;
     this.title = title;
@@ -48,14 +49,12 @@ function displayMyLibrary() {
     for(const myBook of myLibrary) {
         const card = makeCard();
         card.setAttribute("data-index", myBook.number);
-        console.log(card.dataset.index);
 
         const title = createDiv("title", myBook.title);
         const author = createDiv("author", "by " + myBook.author);
         const pages = createDiv("pages", myBook.pages + " pages");
         const status = createDiv("status", myBook.status);
 
-        //delete button will either take an id number in the createBtn parameter or the dataset.book value
         const deleteBtn = createBtn("delete-btn", "Delete");
         deleteBtn.dataset.index = myBook.number;
 
@@ -69,8 +68,20 @@ function displayMyLibrary() {
 
         //Cannot be defined until after the delete button is added to the card and container
         deleteBtns = document.querySelectorAll(".delete-btn");
-        console.log(deleteBtns);
     }
+
+    deleteBtns.forEach((deleteBtn) => {
+        deleteBtn.addEventListener("click", () => {
+            const deleteBooks = document.querySelectorAll(".card");
+            for (const deleteBook of deleteBooks ) {
+                if (deleteBook.dataset.index === deleteBtn.dataset.index) {
+                    container.removeChild(deleteBook);
+                    myLibrary.splice(deleteBtn.dataset.index, 1);
+                }
+            }
+        })
+    })
+
 };
 
 
@@ -153,14 +164,3 @@ function getStatus(radioSelection) {
 displayMyLibrary();
 
 
-deleteBtns.forEach((deleteBtn) => {
-    deleteBtn.addEventListener("click", () => {
-        console.log(deleteBtn.dataset.index);
-        const deleteBooks = document.querySelectorAll(".card");
-        for (const deleteBook of deleteBooks ) {
-            if (deleteBook.dataset.index === deleteBtn.dataset.index) {
-                container.removeChild(deleteBook);
-            }
-        }
-    })
-})
