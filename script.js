@@ -1,8 +1,9 @@
 const container = document.querySelector(".container");
 const openModal = document.querySelector(".modal-btn");
 const modal = document.querySelector(".modal");
-const modalSpan = document.querySelector(".close");
+const closeBtn = document.querySelector(".close");
 const submitBtn = document.querySelector(".submit-form");
+
 
 const myLibrary = [
     {
@@ -72,7 +73,7 @@ openModal.addEventListener("click", () => {
     modal.style.display = "block";
 })
 
-modalSpan.addEventListener("click", () => {
+closeBtn.addEventListener("click", () => {
     closeModal();
 })
 
