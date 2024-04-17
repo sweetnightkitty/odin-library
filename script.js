@@ -5,6 +5,7 @@ const closeBtn = document.querySelector(".close");
 const submitBtn = document.querySelector(".submit-form");
 const form = document.querySelector(".form");
 const radios = document.getElementsByName("readStatus");
+const booksToDelete = document.querySelectorAll(".delete-btn");
 
 
 
@@ -137,3 +138,9 @@ function getStatus(radioSelection) {
     if(radioSelection === "current") return "Currently Reading";
     if(radioSelection === "read") return "Read";
 }
+
+booksToDelete.forEach((bookToDelete) => {
+    bookToDelete.addEventListener("click", () => {
+        //target this book to delete from book myLibrary array
+    })
+})
