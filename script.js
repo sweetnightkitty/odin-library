@@ -47,12 +47,13 @@ function displayMyLibrary() {
         const author = createDiv("author", "by " + myBook.author);
         const pages = createDiv("pages", myBook.pages + " pages");
         const status = createDiv("status", myBook.status);
-
+        const deleteBtn = createBtn("delete-btn", "Delete");
         
         card.appendChild(title);
         card.appendChild(author);
         card.appendChild(pages);
         card.appendChild(status);
+        card.appendChild(deleteBtn);
 
         container.appendChild(card);
     }
@@ -70,6 +71,13 @@ function createDiv(className, textContent) {
     div.classList.add(className);
     div.textContent = textContent;
     return div;
+}
+
+function createBtn(className, btnText) {
+    const btn = document.createElement("button");
+    btn.classList.add(className);
+    btn.textContent = btnText;
+    return btn;
 }
 
 
