@@ -33,6 +33,7 @@ function addBookToMyLibrary(title, author, pages, status) {
 
 function displayMyLibrary() {
     for(const myBook of myLibrary) {
+        //const div can be replaced with function makeCard after further adjustments
         const div = document.createElement("div");
         div.textContent = myBook.title + myBook.author + myBook.pages + myBook.status;
         container.appendChild(div);
@@ -41,3 +42,10 @@ function displayMyLibrary() {
 
 displayMyLibrary();
 
+//myBook is going to pass an object - needs an intermediate step
+function makeCard(myBook) {
+    const card = document.createElement("div");
+    card.classList.add("card");
+    card.textContent = myBook;
+    return card;
+}
