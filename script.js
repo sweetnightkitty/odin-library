@@ -39,7 +39,6 @@ function addBookToMyLibrary(title, author, pages, status) {
 };
 
 function displayMyLibrary() {
-    resetMyLibrary();
     for(const myBook of myLibrary) {
         const card = makeCard();
 
@@ -93,7 +92,7 @@ submitBtn.addEventListener("click", (e) => {
     const pages = document.getElementById("pages").value;
     //need to add status radio option too
     addBookToMyLibrary(title, author, pages, "test");
-    //displayMyLibrary(); //duplicates all books already in the library array
+    resetMyLibrary();
     displayMyLibrary();
     closeModal();
 })
