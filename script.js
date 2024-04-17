@@ -5,7 +5,6 @@ const closeBtn = document.querySelector(".close");
 const submitBtn = document.querySelector(".submit-form");
 const form = document.querySelector(".form");
 const radios = document.getElementsByName("readStatus");
-const booksToDelete = document.querySelectorAll(".delete-btn");
 
 
 
@@ -25,6 +24,7 @@ const myLibrary = [
     }
 ];
 
+//bookNumber and .number may not be necessary
 let bookNumber = 0;
 function Book(title, author, pages, status) {
     bookNumber += 1;
@@ -43,6 +43,7 @@ function addBookToMyLibrary(title, author, pages, status) {
     myLibrary.push(newBook);
 };
 
+//Plan to simplify
 function displayMyLibrary() {
     for(const myBook of myLibrary) {
         const card = makeCard();
@@ -51,16 +52,20 @@ function displayMyLibrary() {
         const author = createDiv("author", "by " + myBook.author);
         const pages = createDiv("pages", myBook.pages + " pages");
         const status = createDiv("status", myBook.status);
-        const deleteBtn = createBtn("delete-btn", "bn" + myBook.number, "Delete");
         
+        //delete button will either take an id number in the createBtn parameter or the dataset.book value
+        const deleteBtn = createBtn("delete-btn", "bn" + myBook.number, "Delete");
+        deleteBtn.dataset.book = myBook.number;
+
         card.appendChild(title);
         card.appendChild(author);
         card.appendChild(pages);
         card.appendChild(status);
-        card.appendChild(deleteBtn);
 
+        card.appendChild(deleteBtn);
         container.appendChild(card);
-        console.log(booksToDelete);
+
+
     }
 };
 
@@ -112,7 +117,7 @@ submitBtn.addEventListener("click", (e) => {
         if(radios[i].checked)
         selection = radios[i].value;
     }
-    //need to add status radio option too
+
     const status = getStatus(selection);
     resetMyLibrary();
     addBookToMyLibrary(title, author, pages, status);
@@ -144,8 +149,3 @@ function getStatus(radioSelection) {
     if(radioSelection === "read") return "Read";
 }
 
-booksToDelete.forEach((bookToDelete) => {
-    bookToDelete.addEventListener("click", () => {
-        console.log("hello");
-    })
-})
