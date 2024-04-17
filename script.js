@@ -8,6 +8,7 @@ const radios = document.getElementsByName("readStatus");
 
 
 
+
 const myLibrary = [
     {
         title: "The Good Enough Job",
@@ -52,7 +53,11 @@ function displayMyLibrary() {
 
         //delete button will either take an id number in the createBtn parameter or the dataset.book value
         const deleteBtn = createBtn("delete-btn", "bn" + myBook.number, "Delete");
-        deleteBtn.dataset.book = myBook.number;
+
+
+        deleteBtn.addEventListener("click", () => {
+            console.log("hello");
+        })
 
         card.appendChild(title);
         card.appendChild(author);
@@ -61,6 +66,10 @@ function displayMyLibrary() {
 
         card.appendChild(deleteBtn);
         container.appendChild(card);
+
+        
+
+
 
 
     }
@@ -103,6 +112,11 @@ window.addEventListener("click",(e) => {
     }
 })
 
+function closeModal() {
+    modal.style.display = "none";
+    form.reset();
+}
+
 submitBtn.addEventListener("click", (e) => {
     e.preventDefault();
     const title = document.getElementById("title").value;
@@ -122,11 +136,6 @@ submitBtn.addEventListener("click", (e) => {
     closeModal();
 })
 
-
-function closeModal() {
-    modal.style.display = "none";
-    form.reset();
-}
 
 
 displayMyLibrary();
