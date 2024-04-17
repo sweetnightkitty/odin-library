@@ -5,7 +5,7 @@ const closeBtn = document.querySelector(".close");
 const submitBtn = document.querySelector(".submit-form");
 const form = document.querySelector(".form");
 const radios = document.getElementsByName("readStatus");
-let booksToDelete;
+let deleteBtns;
 
 
 
@@ -68,8 +68,8 @@ function displayMyLibrary() {
         container.appendChild(card);
 
         //Cannot be defined until after the delete button is added to the card and container
-        booksToDelete = document.querySelectorAll(".delete-btn");
-        console.log(booksToDelete);
+        deleteBtns = document.querySelectorAll(".delete-btn");
+        console.log(deleteBtns);
     }
 };
 
@@ -153,13 +153,13 @@ function getStatus(radioSelection) {
 displayMyLibrary();
 
 
-booksToDelete.forEach((bookToDelete) => {
-    bookToDelete.addEventListener("click", () => {
-        console.log(bookToDelete.dataset.index);
-        const cards = document.querySelectorAll(".card");
-        for (const card of cards) {
-            if (card.dataset.index === bookToDelete.dataset.index) {
-                container.removeChild(card);
+deleteBtns.forEach((deleteBtn) => {
+    deleteBtn.addEventListener("click", () => {
+        console.log(deleteBtn.dataset.index);
+        const deleteBooks = document.querySelectorAll(".card");
+        for (const deleteBook of deleteBooks ) {
+            if (deleteBook.dataset.index === deleteBtn.dataset.index) {
+                container.removeChild(deleteBook);
             }
         }
     })
