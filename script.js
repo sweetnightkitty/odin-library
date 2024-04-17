@@ -33,9 +33,6 @@ function Book(title, author, pages, status) {
     this.author = author;
     this.pages = pages;
     this.status = status;
-    this.info = function() {
-        return title + ", by " + author + ", " + pages + " pages, " + status;
-    }
 };
 
 function addBookToMyLibrary(title, author, pages, status) {
