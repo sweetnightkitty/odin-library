@@ -38,10 +38,23 @@
     padding: 20px;
     border: 1px solid purple;
     border-radius: 10px;
+    /* position, top/left and transform center the modal popup */
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 200px;
     height: 300px;
+}
+
+.close {
+    color: #aaa;
+    float: right; /* sets X to the right */
+    font-weight: bold;
+}
+
+.close:hover, .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }
