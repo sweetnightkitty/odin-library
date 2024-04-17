@@ -4,6 +4,7 @@ const modal = document.querySelector(".modal");
 const closeBtn = document.querySelector(".close");
 const submitBtn = document.querySelector(".submit-form");
 const form = document.querySelector(".form");
+const radios = document.getElementsByName("readStatus");
 
 
 
@@ -12,14 +13,14 @@ const myLibrary = [
         title: "The Good Enough Job",
         author: "Simone Stolzoff",
         pages: 272,
-        status: "read",
+        status: "Read",
     },
 
     {
         title: "Feel Good Productivity",
         author: "Ali Abdaal",
         pages: 200,
-        status: "currently reading",
+        status: "Currently Reading",
     }
 ];
 
@@ -46,6 +47,7 @@ function displayMyLibrary() {
         const author = createDiv("author", "by " + myBook.author);
         const pages = createDiv("pages", myBook.pages + " pages");
         const status = createDiv("status", myBook.status);
+
         
         card.appendChild(title);
         card.appendChild(author);
@@ -90,9 +92,16 @@ submitBtn.addEventListener("click", (e) => {
     const title = document.getElementById("title").value;
     const author = document.getElementById("author").value;
     const pages = document.getElementById("pages").value;
+
+    let selection;
+    for(let i = 0; i < radios.length; i++) {
+        if(radios[i].checked)
+        selection = radios[i].value;
+    }
     //need to add status radio option too
-    addBookToMyLibrary(title, author, pages, "test");
+    const status = getStatus(selection);
     resetMyLibrary();
+    addBookToMyLibrary(title, author, pages, status);
     displayMyLibrary();
     closeModal();
 })
@@ -113,4 +122,10 @@ function resetMyLibrary() {
     cards.forEach((card) => {
         container.removeChild(card);
     });
+}
+
+function getStatus(radioSelection) {
+    if(radioSelection === "want") return "Want to Read";
+    if(radioSelection === "current") return "Currently Reading";
+    if(radioSelection === "read") return "Read";
 }
