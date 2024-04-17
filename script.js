@@ -51,7 +51,7 @@ function displayMyLibrary() {
         const author = createDiv("author", "by " + myBook.author);
         const pages = createDiv("pages", myBook.pages + " pages");
         const status = createDiv("status", myBook.status);
-        const deleteBtn = createBtn("delete-btn", myBook.number, "Delete");
+        const deleteBtn = createBtn("delete-btn", "bn" + myBook.number, "Delete");
         
         card.appendChild(title);
         card.appendChild(author);
@@ -81,7 +81,7 @@ function createDiv(className, textContent) {
 function createBtn(className, idName, btnText) {
     const btn = document.createElement("button");
     btn.classList.add(className);
-    btn.id = idName;
+    btn.setAttribute("id", idName);
     btn.textContent = btnText;
     return btn;
 }
