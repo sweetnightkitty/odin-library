@@ -1,3 +1,5 @@
+const container = document.querySelector(".container");
+
 const myLibrary = [
     {
         title: "The Good Enough Job",
@@ -24,8 +26,11 @@ function addBookToMyLibrary(title, author, pages, status) {
 
 function displayMyLibrary() {
     for(const myBook of myLibrary) {
-        console.log(myBook);
+        const div = document.createElement("div");
+        div.textContent = myBook.title + myBook.author + myBook.pages + myBook.status;
+        container.appendChild(div);
     }
 };
 
 displayMyLibrary();
+
