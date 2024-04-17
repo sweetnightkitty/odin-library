@@ -6,6 +6,7 @@ const submitBtn = document.querySelector(".submit-form");
 const form = document.querySelector(".form");
 
 
+
 const myLibrary = [
     {
         title: "The Good Enough Job",
@@ -38,6 +39,7 @@ function addBookToMyLibrary(title, author, pages, status) {
 };
 
 function displayMyLibrary() {
+    resetMyLibrary();
     for(const myBook of myLibrary) {
         const card = makeCard();
 
@@ -91,11 +93,12 @@ submitBtn.addEventListener("click", (e) => {
     const pages = document.getElementById("pages").value;
     //need to add status radio option too
     addBookToMyLibrary(title, author, pages, "test");
-    displayMyLibrary(); //duplicates all books already in the library array
+    //displayMyLibrary(); //duplicates all books already in the library array
+    displayMyLibrary();
     closeModal();
 })
 
-//form input still here after it opens again later
+
 function closeModal() {
     modal.style.display = "none";
     form.reset();
@@ -103,3 +106,12 @@ function closeModal() {
 
 
 displayMyLibrary();
+
+function resetMyLibrary() {
+    let totalCards = 0;
+
+    const cards = document.querySelectorAll(".card");
+    cards.forEach((card) => {
+        container.removeChild(card);
+    });
+}
