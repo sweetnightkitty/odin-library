@@ -2,7 +2,7 @@ const container = document.querySelector(".container");
 const openModal = document.querySelector(".modal-btn");
 const modal = document.querySelector(".modal");
 const modalSpan = document.querySelector(".close");
-
+const submitBtn = document.querySelector(".submit-form");
 
 const myLibrary = [
     {
@@ -53,8 +53,6 @@ function displayMyLibrary() {
     }
 };
 
-displayMyLibrary();
-
 
 function makeCard() {
     const card = document.createElement("div");
@@ -69,17 +67,35 @@ function createDiv(className, textContent) {
     return div;
 }
 
-//check these work before commit
+
 openModal.addEventListener("click", () => {
     modal.style.display = "block";
 })
 
 modalSpan.addEventListener("click", () => {
-    modal.style.display = "none";
+    closeModal();
 })
 
 window.addEventListener("click",(e) => {
     if (e.target == modal) {
-        modal.style.display = "none";
+    closeModal();
     }
 })
+
+submitBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    const title = document.getElementById("title").value;
+    const author = document.getElementById("author").value;
+    const pages = document.getElementById("pages").value;
+    //need to add status radio option too
+    addBookToMyLibrary(title, author, pages, "test");
+    displayMyLibrary(); //duplicates all books already in the library array
+    closeModal();
+})
+
+//form input still here after it opens again later
+function closeModal() {
+    modal.style.display = "none";
+}
+
+displayMyLibrary();
