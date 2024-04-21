@@ -44,27 +44,11 @@ function addBookToMyLibrary(title, author, pages, status) {
     myLibrary.push(newBook);
 };
 
-//Plan to simplify
+//move deleteBtns.forEach to simplify
 function displayMyLibrary() {
     for(const myBook of myLibrary) {
-        const card = makeCard();
-        card.setAttribute("data-index", myBook.number);
-
-        const title = createDiv("title", myBook.title);
-        const author = createDiv("author", "by " + myBook.author);
-        const pages = createDiv("pages", myBook.pages + " pages");
-        const status = createDiv("status", myBook.status);
-
-        const deleteBtn = createBtn("delete-btn", "Delete");
-        deleteBtn.dataset.index = myBook.number;
-
-        card.appendChild(title);
-        card.appendChild(author);
-        card.appendChild(pages);
-        card.appendChild(status);
-
-        card.appendChild(deleteBtn);
-        container.appendChild(card);
+        const bookCard = appendBookInfoToCard(myBook);
+        container.appendChild(bookCard);
 
         //Cannot be defined until after the delete button is added to the card and container
         deleteBtns = document.querySelectorAll(".delete-btn");
@@ -74,8 +58,9 @@ function displayMyLibrary() {
         deleteBtn.addEventListener("click", () => {
             const deleteBooks = document.querySelectorAll(".card");
             for (const deleteBook of deleteBooks ) {
-                if (deleteBook.dataset.index === deleteBtn.dataset.index) {
+                if (deleteBook.id === deleteBtn.id) {
                     container.removeChild(deleteBook);
+                    console.log(deleteBook.dataset.index);
                     myLibrary.splice(deleteBtn.dataset.index, 1);
                 }
             }
@@ -83,6 +68,28 @@ function displayMyLibrary() {
     })
 
 };
+
+function appendBookInfoToCard(myBook) {
+    const card = makeCard();
+
+    const title = createDiv("title", myBook.title);
+    const author = createDiv("author", "by " + myBook.author);
+    const pages = createDiv("pages", myBook.pages + " pages");
+    const status = createDiv("status", myBook.status);
+    const deleteBtn = createBtn("delete-btn", "Delete");
+
+    //With identical ids the deletebtn can target the correct card for deletion.
+    card.id = myBook.number;
+    deleteBtn.id = myBook.number;
+
+    card.appendChild(title);
+    card.appendChild(author);
+    card.appendChild(pages);
+    card.appendChild(status);
+    card.appendChild(deleteBtn);
+
+    return card;
+}
 
 
 function makeCard() {
