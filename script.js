@@ -10,7 +10,7 @@ let deleteBtns;
 
 
 
-const myLibrary = [
+let myLibrary = [
     {   
         number: 0,
         title: "The Good Enough Job",
@@ -44,7 +44,7 @@ function addBookToMyLibrary(title, author, pages, status) {
     myLibrary.push(newBook);
 };
 
-//move deleteBtns.forEach to simplify
+
 function displayMyLibrary() {
     for(const myBook of myLibrary) {
         const bookCard = appendBookInfoToCard(myBook);
@@ -59,12 +59,12 @@ function displayMyLibrary() {
 };
 
 function deleteBooks() {
-    const deleteBooks = document.querySelectorAll(".card");
-            for (const deleteBook of deleteBooks ) {
-                if (deleteBook.id === this.id) {
-                    //remove from myLibrary and then display my Library
-                    container.removeChild(deleteBook);
-                    myLibrary.splice(0, 1);
+    const books = document.querySelectorAll(".card");
+            for (const book of books ) {
+                if (book.id === this.id) {
+                    container.removeChild(book);
+                    const updatedLibrary = myLibrary.filter((deletedBook) => deletedBook.number != book.id);
+                    myLibrary = updatedLibrary;
                 }
             }
 }
