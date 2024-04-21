@@ -27,11 +27,10 @@ let myLibrary = [
     }
 ];
 
-//bookNumber and .number may not be necessary
+
 let bookNumber = 1;
 function Book(title, author, pages, status) {
-    //bookNumber does not accurately label index when books are deleted
-    bookNumber += 1;
+    bookNumber += 1; //Each newly created book gets a unique identifying #
     this.number = bookNumber;
     this.title = title;
     this.author = author;
