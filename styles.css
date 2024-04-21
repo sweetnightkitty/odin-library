@@ -85,6 +85,11 @@ header {
     cursor: pointer;
 }
 
+.status:hover {
+    color: purple;
+    cursor: pointer;
+}
+
 footer {
     background-color: pink;
     color: white;
