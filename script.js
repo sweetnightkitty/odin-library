@@ -57,12 +57,12 @@ function displayMyLibrary() {
 
     readStats = document.querySelectorAll(".status");
     readStats.forEach((readStat) => {
-        readStat.addEventListener("click", toggleStatus);
+        readStat.addEventListener("click", toggle);
     })
 
 };
 
-function toggleStatus() {
+function toggle() {
     if(this.textContent === "Want to Read") {
         this.textContent = "Currently Reading";
     } else if(this.textContent === "Currently Reading") {
@@ -71,6 +71,7 @@ function toggleStatus() {
         this.textContent = "Want to Read";
     }
 };
+
 
 function deleteBooks() {
     const books = document.querySelectorAll(".card");
