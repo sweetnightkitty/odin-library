@@ -49,25 +49,25 @@ function displayMyLibrary() {
     for(const myBook of myLibrary) {
         const bookCard = appendBookInfoToCard(myBook);
         container.appendChild(bookCard);
-
-        //Cannot be defined until after the delete button is added to the card and container
-        deleteBtns = document.querySelectorAll(".delete-btn");
     }
 
+    deleteBtns = document.querySelectorAll(".delete-btn");
     deleteBtns.forEach((deleteBtn) => {
-        deleteBtn.addEventListener("click", () => {
-            const deleteBooks = document.querySelectorAll(".card");
-            for (const deleteBook of deleteBooks ) {
-                if (deleteBook.id === deleteBtn.id) {
-                    container.removeChild(deleteBook);
-                    console.log(deleteBook.dataset.index);
-                    myLibrary.splice(deleteBtn.dataset.index, 1);
-                }
-            }
-        })
+        deleteBtn.addEventListener("click", deleteBooks);
     })
 
 };
+
+function deleteBooks() {
+    const deleteBooks = document.querySelectorAll(".card");
+            for (const deleteBook of deleteBooks ) {
+                if (deleteBook.id === this.id) {
+                    //remove from myLibrary and then display my Library
+                    container.removeChild(deleteBook);
+                    myLibrary.splice(0, 1);
+                }
+            }
+}
 
 function appendBookInfoToCard(myBook) {
     const card = makeCard();
