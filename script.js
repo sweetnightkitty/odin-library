@@ -6,13 +6,6 @@ let deleteBtns;
 let bookNumber = 0;
 let myLibrary = [];
 
-const bookOne = new Book("The Good Enough Job", "Simone Stolzoff", 272, "Read");
-const bookTwo = new Book("Feel Good Productivity", "Ali Abdaal", 200, "Want to Read");
-myLibrary.push(bookOne);
-myLibrary.push(bookTwo);
-displayMyLibrary()
-
-
 
 function Book(title, author, pages, status) {
     bookNumber += 1; //Unique book # can be used to set id values for the card, deleteBtn and toggle
