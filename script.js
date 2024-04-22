@@ -1,10 +1,7 @@
-const container = document.querySelector(".container");
 const openBtn = document.querySelector(".modal-btn");
 const modal = document.querySelector(".modal");
 const closeBtn = document.querySelector(".close");
 const submitBtn = document.querySelector(".submit-form");
-const form = document.querySelector(".form");
-const radios = document.getElementsByName("readStatus");
 let deleteBtns;
 
 
@@ -55,6 +52,7 @@ function addBookToMyLibrary(title, author, pages, status) {
 
 
 function displayMyLibrary() {
+    const container = document.querySelector(".container");
     for(const myBook of myLibrary) {
         const bookCard = appendBookInfoToCard(myBook);
         container.appendChild(bookCard);
@@ -74,7 +72,6 @@ function displayMyLibrary() {
 function updateStatus() {
     const index = myLibrary.map((book) => book.number).indexOf(parseInt(this.id));
     myLibrary[index].toggleStatus()
-
     resetMyLibrary()
     displayMyLibrary()
 }
@@ -85,7 +82,6 @@ function deleteBooks() {
     const books = document.querySelectorAll(".card");
             for (const book of books ) {
                 if (book.id === this.id) {
-                    // container.removeChild(book);
                     const updatedLibrary = myLibrary.filter((deletedBook) => deletedBook.number != book.id);
                     myLibrary = updatedLibrary;
                     resetMyLibrary()
@@ -158,8 +154,11 @@ window.addEventListener("click",(e) => {
 
 function closeModal() {
     modal.style.display = "none";
+    const form = document.querySelector(".form");
     form.reset();
 }
+
+
 
 submitBtn.addEventListener("click", (e) => {
     e.preventDefault();
@@ -167,6 +166,7 @@ submitBtn.addEventListener("click", (e) => {
     const author = document.getElementById("author").value;
     const pages = document.getElementById("pages").value;
 
+    const radios = document.getElementsByName("readStatus");
     let selection;
     for(let i = 0; i < radios.length; i++) {
         if(radios[i].checked)
@@ -183,6 +183,7 @@ submitBtn.addEventListener("click", (e) => {
 
 
 function resetMyLibrary() {
+    const container = document.querySelector(".container");
     const cards = document.querySelectorAll(".card");
     cards.forEach((card) => {
         container.removeChild(card);
