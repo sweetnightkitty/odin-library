@@ -15,7 +15,7 @@ displayMyLibrary()
 
 
 function Book(title, author, pages, status) {
-    bookNumber += 1; //Each newly created book gets a unique identifying #
+    bookNumber += 1; //Unique book # can be used to set id values for the card, deleteBtn and toggle
     this.number = bookNumber;
     this.title = title;
     this.author = author;
@@ -73,7 +73,6 @@ function displayMyLibrary() {
 function updateStatus() {
     const index = myLibrary.map((book) => book.number).indexOf(parseInt(this.id));
     myLibrary[index].toggleStatus()
-    // resetMyLibrary()
     displayMyLibrary()
 }
 
@@ -81,7 +80,6 @@ function updateStatus() {
 function deleteBooks() {
     const index = myLibrary.map((book) => book.number).indexOf(parseInt(this.id));
     myLibrary.splice(index, 1);
-    // resetMyLibrary()
     displayMyLibrary()
 }
 
@@ -97,7 +95,6 @@ function appendBookInfoToCard(myBook) {
     const deleteBtn = createBtn("delete-btn", "Delete");
 
     //With identical ids the deletebtn can target the correct card for deletion.
-    card.id = myBook.number;
     deleteBtn.id = myBook.number;
     toggleBtn.id = myBook.number;
 
@@ -157,7 +154,6 @@ function closeModal() {
 
 submitBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    // resetMyLibrary();
     addBookToMyLibrary();
     displayMyLibrary();
     closeModal();
