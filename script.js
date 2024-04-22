@@ -30,13 +30,12 @@ function addBookToMyLibrary() {
     const pages = document.getElementById("pages").value;
 
     const radios = document.getElementsByName("readStatus");
-    let selection;
+    let status;
     for(let i = 0; i < radios.length; i++) {
         if(radios[i].checked)
-        selection = radios[i].value;
+        status = getStatus(radios[i].value);
     }
 
-    const status = getStatus(selection);
     const book = new Book(title, author, pages, status);
     myLibrary.push(book);
 };
