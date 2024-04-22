@@ -14,8 +14,6 @@ displayMyLibrary()
 
 
 
-
-
 function Book(title, author, pages, status) {
     bookNumber += 1; //Each newly created book gets a unique identifying #
     this.number = bookNumber;
@@ -25,7 +23,7 @@ function Book(title, author, pages, status) {
     this.status = status;
 };
 
-//toggles status of the book, does not work for 2 examples above;
+
 Book.prototype.toggleStatus = function() {
     if(this.status === "Read") {
         this.status = "Want to Read";
@@ -34,7 +32,18 @@ Book.prototype.toggleStatus = function() {
     }
 }
 
-function addBookToMyLibrary(title, author, pages, status) {
+function addBookToMyLibrary() {
+    const title = document.getElementById("title").value;
+    const author = document.getElementById("author").value;
+    const pages = document.getElementById("pages").value;
+
+    const radios = document.getElementsByName("readStatus");
+    let selection;
+    for(let i = 0; i < radios.length; i++) {
+        if(radios[i].checked)
+        selection = radios[i].value;
+    }
+    const status = getStatus(selection);
     const book = new Book(title, author, pages, status);
     myLibrary.push(book);
 };
@@ -146,20 +155,20 @@ function closeModal() {
 
 submitBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    const title = document.getElementById("title").value;
-    const author = document.getElementById("author").value;
-    const pages = document.getElementById("pages").value;
+    // const title = document.getElementById("title").value;
+    // const author = document.getElementById("author").value;
+    // const pages = document.getElementById("pages").value;
 
-    const radios = document.getElementsByName("readStatus");
-    let selection;
-    for(let i = 0; i < radios.length; i++) {
-        if(radios[i].checked)
-        selection = radios[i].value;
-    }
-    const status = getStatus(selection);
+    // const radios = document.getElementsByName("readStatus");
+    // let selection;
+    // for(let i = 0; i < radios.length; i++) {
+    //     if(radios[i].checked)
+    //     selection = radios[i].value;
+    // }
+    // const status = getStatus(selection);
 
     resetMyLibrary();
-    addBookToMyLibrary(title, author, pages, status);
+    addBookToMyLibrary();
     displayMyLibrary();
     closeModal();
 })
