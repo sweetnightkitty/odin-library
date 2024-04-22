@@ -43,6 +43,7 @@ function addBookToMyLibrary() {
         if(radios[i].checked)
         selection = radios[i].value;
     }
+
     const status = getStatus(selection);
     const book = new Book(title, author, pages, status);
     myLibrary.push(book);
@@ -50,6 +51,7 @@ function addBookToMyLibrary() {
 
 
 function displayMyLibrary() {
+    resetMyLibrary();
     const container = document.querySelector(".container");
 
     for(const myBook of myLibrary) {
@@ -71,7 +73,7 @@ function displayMyLibrary() {
 function updateStatus() {
     const index = myLibrary.map((book) => book.number).indexOf(parseInt(this.id));
     myLibrary[index].toggleStatus()
-    resetMyLibrary()
+    // resetMyLibrary()
     displayMyLibrary()
 }
 
@@ -79,7 +81,7 @@ function updateStatus() {
 function deleteBooks() {
     const index = myLibrary.map((book) => book.number).indexOf(parseInt(this.id));
     myLibrary.splice(index, 1);
-    resetMyLibrary()
+    // resetMyLibrary()
     displayMyLibrary()
 }
 
@@ -155,19 +157,7 @@ function closeModal() {
 
 submitBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    // const title = document.getElementById("title").value;
-    // const author = document.getElementById("author").value;
-    // const pages = document.getElementById("pages").value;
-
-    // const radios = document.getElementsByName("readStatus");
-    // let selection;
-    // for(let i = 0; i < radios.length; i++) {
-    //     if(radios[i].checked)
-    //     selection = radios[i].value;
-    // }
-    // const status = getStatus(selection);
-
-    resetMyLibrary();
+    // resetMyLibrary();
     addBookToMyLibrary();
     displayMyLibrary();
     closeModal();
