@@ -23,7 +23,7 @@ let myLibrary = [
         title: "Feel Good Productivity",
         author: "Ali Abdaal",
         pages: 200,
-        status: "Currently Reading",
+        status: "Want to Read",
     }
 ];
 
@@ -166,7 +166,6 @@ function resetMyLibrary() {
 
 function getStatus(radioSelection) {
     if(radioSelection === "want") return "Want to Read";
-    if(radioSelection === "current") return "Currently Reading";
     if(radioSelection === "read") return "Read";
 }
 
