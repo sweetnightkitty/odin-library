@@ -51,12 +51,12 @@ function displayMyLibrary() {
         container.appendChild(bookCard);
     }
 
-    let deleteBtns = document.querySelectorAll(".delete-btn");
+    const deleteBtns = document.querySelectorAll(".delete-btn");
     deleteBtns.forEach((deleteBtn) => {
         deleteBtn.addEventListener("click", deleteBooks);
     })
 
-    toggleBtns = document.querySelectorAll(".toggle");
+    const toggleBtns = document.querySelectorAll(".toggle");
     toggleBtns.forEach((toggleBtn) => {
         toggleBtn.addEventListener("click", updateStatus); 
     })
@@ -91,11 +91,6 @@ function appendBookInfoToCard(myBook) {
     toggleBtn.dataset.number = myBook.number;
 
     card.append(title, author, pages, status, toggleBtn, deleteBtn);
-    // card.appendChild(author);
-    // card.appendChild(pages);
-    // card.appendChild(status);
-    // card.appendChild(toggleBtn);
-    // card.appendChild(deleteBtn);
 
     return card;
 }
