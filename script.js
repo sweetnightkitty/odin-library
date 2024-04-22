@@ -64,14 +64,14 @@ function displayMyLibrary() {
 };
 
 function updateStatus() {
-    const index = myLibrary.map((book) => book.number).indexOf(parseInt(this.id));
+    const index = myLibrary.map((book) => book.number).indexOf(parseInt(this.dataset.number));
     myLibrary[index].toggleStatus()
     displayMyLibrary()
 }
 
 
 function deleteBooks() {
-    const index = myLibrary.map((book) => book.number).indexOf(parseInt(this.id));
+    const index = myLibrary.map((book) => book.number).indexOf(parseInt(this.dataset.number));
     myLibrary.splice(index, 1);
     displayMyLibrary()
 }
@@ -88,8 +88,8 @@ function appendBookInfoToCard(myBook) {
     const deleteBtn = createBtn("delete-btn", "Delete");
 
     //With identical ids the deletebtn can target the correct card for deletion.
-    deleteBtn.id = myBook.number;
-    toggleBtn.id = myBook.number;
+    deleteBtn.dataset.number = myBook.number;
+    toggleBtn.dataset.number = myBook.number;
 
     card.appendChild(title);
     card.appendChild(author);
