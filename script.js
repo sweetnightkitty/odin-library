@@ -29,6 +29,7 @@ let myLibrary = [
 
 
 let bookNumber = 1;
+
 function Book(title, author, pages, status) {
     bookNumber += 1; //Each newly created book gets a unique identifying #
     this.number = bookNumber;
@@ -37,6 +38,15 @@ function Book(title, author, pages, status) {
     this.pages = pages;
     this.status = status;
 };
+
+//toggles status of the book, does not work for 2 examples above;
+Book.prototype.toggleStatus = function() {
+    if(this.status === "Read") {
+        this.status = "Want to Read";
+    } else if(this.status === "Want to Read") {
+        this.status = "Read";
+    }
+}
 
 function addBookToMyLibrary(title, author, pages, status) {
     const book = new Book(title, author, pages, status);
@@ -55,13 +65,22 @@ function displayMyLibrary() {
         deleteBtn.addEventListener("click", deleteBooks);
     })
 
-    // toggleBtns = document.querySelectorAll(".toggle");
-    // toggleBtns.forEach((toggleBtn) => {
-    //     toggleBtn.addEventListener("click", toggle); //toggle function
-    // })
+    toggleBtns = document.querySelectorAll(".toggle");
+    toggleBtns.forEach((toggleBtn) => {
+        toggleBtn.addEventListener("click", updateStatus); //toggle function
+    })
 };
 
+function updateStatus() {
+    const index = myLibrary.map((book) => book.number).indexOf(parseInt(this.id));
+    myLibrary[index].toggleStatus()
 
+    resetMyLibrary()
+    displayMyLibrary()
+}
+
+
+//Can be simplified using map
 function deleteBooks() {
     const books = document.querySelectorAll(".card");
             for (const book of books ) {
@@ -75,12 +94,6 @@ function deleteBooks() {
             }
 }
 
-// function toggle() {
-//     const books = document.querySelectorAll(".card");
-//     for(const book of books) {
-//         if((book.id === this.id) && status?)
-//     }
-// }
 
 function appendBookInfoToCard(myBook) {
     const card = makeCard();
@@ -89,7 +102,7 @@ function appendBookInfoToCard(myBook) {
     const author = createDiv("author", "by " + myBook.author);
     const pages = createDiv("pages", myBook.pages + " pages");
     const status = createDiv("status", myBook.status);
-    const toggleBtn = createBtn(".toggle", "Update")
+    const toggleBtn = createBtn("toggle", "Update");
     const deleteBtn = createBtn("delete-btn", "Delete");
 
     //With identical ids the deletebtn can target the correct card for deletion.
@@ -182,5 +195,3 @@ function getStatus(radioSelection) {
 }
 
 displayMyLibrary();
-
-
