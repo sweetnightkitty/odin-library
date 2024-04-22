@@ -91,16 +91,19 @@ function appendBookInfoToCard(myBook) {
     const author = createDiv("author", "by " + myBook.author);
     const pages = createDiv("pages", myBook.pages + " pages");
     const status = createDiv("status", myBook.status);
+    const toggleBtn = createBtn(".toggle", "Update")
     const deleteBtn = createBtn("delete-btn", "Delete");
 
     //With identical ids the deletebtn can target the correct card for deletion.
     card.id = myBook.number;
     deleteBtn.id = myBook.number;
+    toggleBtn.id = myBook.number;
 
     card.appendChild(title);
     card.appendChild(author);
     card.appendChild(pages);
     card.appendChild(status);
+    card.appendChild(toggleBtn);
     card.appendChild(deleteBtn);
 
     return card;
