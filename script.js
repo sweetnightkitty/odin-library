@@ -54,6 +54,11 @@ function displayMyLibrary() {
     deleteBtns.forEach((deleteBtn) => {
         deleteBtn.addEventListener("click", deleteBooks);
     })
+
+    // toggleBtns = document.querySelectorAll(".toggle");
+    // toggleBtns.forEach((toggleBtn) => {
+    //     toggleBtn.addEventListener("click", toggle); //toggle function
+    // })
 };
 
 
@@ -61,12 +66,21 @@ function deleteBooks() {
     const books = document.querySelectorAll(".card");
             for (const book of books ) {
                 if (book.id === this.id) {
-                    container.removeChild(book);
+                    // container.removeChild(book);
                     const updatedLibrary = myLibrary.filter((deletedBook) => deletedBook.number != book.id);
                     myLibrary = updatedLibrary;
+                    resetMyLibrary()
+                    displayMyLibrary()
                 }
             }
 }
+
+// function toggle() {
+//     const books = document.querySelectorAll(".card");
+//     for(const book of books) {
+//         if((book.id === this.id) && status?)
+//     }
+// }
 
 function appendBookInfoToCard(myBook) {
     const card = makeCard();
@@ -145,8 +159,8 @@ submitBtn.addEventListener("click", (e) => {
         if(radios[i].checked)
         selection = radios[i].value;
     }
-
     const status = getStatus(selection);
+
     resetMyLibrary();
     addBookToMyLibrary(title, author, pages, status);
     displayMyLibrary();
