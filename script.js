@@ -39,8 +39,8 @@ function Book(title, author, pages, status) {
 };
 
 function addBookToMyLibrary(title, author, pages, status) {
-    const newBook = new Book(title, author, pages, status);
-    myLibrary.push(newBook);
+    const book = new Book(title, author, pages, status);
+    myLibrary.push(book);
 };
 
 
@@ -170,8 +170,6 @@ submitBtn.addEventListener("click", (e) => {
 
 
 function resetMyLibrary() {
-    let totalCards = 0;
-
     const cards = document.querySelectorAll(".card");
     cards.forEach((card) => {
         container.removeChild(card);
