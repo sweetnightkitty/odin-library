@@ -5,7 +5,6 @@ const submitBtn = document.querySelector(".submit-form");
 let bookNumber = 0;
 let myLibrary = [];
 
-
 function Book(title, author, pages, status) {
     bookNumber += 1; //Unique book # can be used to set dataset values for the card, deleteBtn and toggle
     this.number = bookNumber;
@@ -14,7 +13,6 @@ function Book(title, author, pages, status) {
     this.pages = pages;
     this.status = status;
 };
-
 
 Book.prototype.toggleStatus = function() {
     if(this.status === "Read") {
@@ -39,7 +37,6 @@ function addBookToMyLibrary() {
     const book = new Book(title, author, pages, status);
     myLibrary.push(book);
 };
-
 
 function displayMyLibrary() {
     resetMyLibrary();
@@ -67,13 +64,11 @@ function updateStatus() {
     displayMyLibrary()
 }
 
-
 function deleteBooks() {
     const index = myLibrary.map((book) => book.number).indexOf(parseInt(this.dataset.number));
     myLibrary.splice(index, 1);
     displayMyLibrary()
 }
-
 
 function appendBookInfoToCard(myBook) {
     const card = makeCard();
@@ -93,7 +88,6 @@ function appendBookInfoToCard(myBook) {
 
     return card;
 }
-
 
 function makeCard() {
     const card = document.createElement("div");
@@ -115,7 +109,6 @@ function createBtn(className, btnText) {
     return btn;
 }
 
-
 openBtn.addEventListener("click", () => {
     modal.style.display = "block";
 })
@@ -136,15 +129,12 @@ function closeModal() {
     form.reset();
 }
 
-
-
 submitBtn.addEventListener("click", (e) => {
     e.preventDefault();
     addBookToMyLibrary();
     displayMyLibrary();
     closeModal();
 })
-
 
 function resetMyLibrary() {
     const container = document.querySelector(".container");
