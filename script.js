@@ -77,17 +77,11 @@ function updateStatus() {
 }
 
 
-//Can be simplified using map
 function deleteBooks() {
-    const books = document.querySelectorAll(".card");
-            for (const book of books ) {
-                if (book.id === this.id) {
-                    const updatedLibrary = myLibrary.filter((deletedBook) => deletedBook.number != book.id);
-                    myLibrary = updatedLibrary;
-                    resetMyLibrary()
-                    displayMyLibrary()
-                }
-            }
+    const index = myLibrary.map((book) => book.number).indexOf(parseInt(this.id));
+    myLibrary.splice(index, 1);
+    resetMyLibrary()
+    displayMyLibrary()
 }
 
 
