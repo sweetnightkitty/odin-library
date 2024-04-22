@@ -8,7 +8,7 @@ let myLibrary = [];
 
 
 function Book(title, author, pages, status) {
-    bookNumber += 1; //Unique book # can be used to set id values for the card, deleteBtn and toggle
+    bookNumber += 1; //Unique book # can be used to set dataset values for the card, deleteBtn and toggle
     this.number = bookNumber;
     this.title = title;
     this.author = author;
@@ -59,7 +59,7 @@ function displayMyLibrary() {
 
     toggleBtns = document.querySelectorAll(".toggle");
     toggleBtns.forEach((toggleBtn) => {
-        toggleBtn.addEventListener("click", updateStatus); //toggle function
+        toggleBtn.addEventListener("click", updateStatus); 
     })
 };
 
@@ -87,7 +87,7 @@ function appendBookInfoToCard(myBook) {
     const toggleBtn = createBtn("toggle", "Update");
     const deleteBtn = createBtn("delete-btn", "Delete");
 
-    //With identical ids the deletebtn can target the correct card for deletion.
+    //So that when btns are clicked the book object with corresponding number can be targeted
     deleteBtn.dataset.number = myBook.number;
     toggleBtn.dataset.number = myBook.number;
 
