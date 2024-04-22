@@ -2,7 +2,6 @@ const openBtn = document.querySelector(".modal-btn");
 const modal = document.querySelector(".modal");
 const closeBtn = document.querySelector(".close");
 const submitBtn = document.querySelector(".submit-form");
-let deleteBtns;
 let bookNumber = 0;
 let myLibrary = [];
 
@@ -52,7 +51,7 @@ function displayMyLibrary() {
         container.appendChild(bookCard);
     }
 
-    deleteBtns = document.querySelectorAll(".delete-btn");
+    let deleteBtns = document.querySelectorAll(".delete-btn");
     deleteBtns.forEach((deleteBtn) => {
         deleteBtn.addEventListener("click", deleteBooks);
     })
@@ -91,12 +90,12 @@ function appendBookInfoToCard(myBook) {
     deleteBtn.dataset.number = myBook.number;
     toggleBtn.dataset.number = myBook.number;
 
-    card.appendChild(title);
-    card.appendChild(author);
-    card.appendChild(pages);
-    card.appendChild(status);
-    card.appendChild(toggleBtn);
-    card.appendChild(deleteBtn);
+    card.append(title, author, pages, status, toggleBtn, deleteBtn);
+    // card.appendChild(author);
+    // card.appendChild(pages);
+    // card.appendChild(status);
+    // card.appendChild(toggleBtn);
+    // card.appendChild(deleteBtn);
 
     return card;
 }
@@ -151,7 +150,6 @@ submitBtn.addEventListener("click", (e) => {
     displayMyLibrary();
     closeModal();
 })
-
 
 
 function resetMyLibrary() {
