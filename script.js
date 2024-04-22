@@ -3,29 +3,18 @@ const modal = document.querySelector(".modal");
 const closeBtn = document.querySelector(".close");
 const submitBtn = document.querySelector(".submit-form");
 let deleteBtns;
+let bookNumber = 0;
+let myLibrary = [];
+
+const bookOne = new Book("The Good Enough Job", "Simone Stolzoff", 272, "Read");
+const bookTwo = new Book("Feel Good Productivity", "Ali Abdaal", 200, "Want to Read");
+myLibrary.push(bookOne);
+myLibrary.push(bookTwo);
+displayMyLibrary()
 
 
 
 
-let myLibrary = [
-    {   
-        number: 0,
-        title: "The Good Enough Job",
-        author: "Simone Stolzoff",
-        pages: 272,
-        status: "Read",
-    },
-
-    {   number: 1,
-        title: "Feel Good Productivity",
-        author: "Ali Abdaal",
-        pages: 200,
-        status: "Want to Read",
-    }
-];
-
-
-let bookNumber = 1;
 
 function Book(title, author, pages, status) {
     bookNumber += 1; //Each newly created book gets a unique identifying #
@@ -53,6 +42,7 @@ function addBookToMyLibrary(title, author, pages, status) {
 
 function displayMyLibrary() {
     const container = document.querySelector(".container");
+
     for(const myBook of myLibrary) {
         const bookCard = appendBookInfoToCard(myBook);
         container.appendChild(bookCard);
@@ -188,5 +178,3 @@ function getStatus(radioSelection) {
     if(radioSelection === "want") return "Want to Read";
     if(radioSelection === "read") return "Read";
 }
-
-displayMyLibrary();
