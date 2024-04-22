@@ -54,22 +54,6 @@ function displayMyLibrary() {
     deleteBtns.forEach((deleteBtn) => {
         deleteBtn.addEventListener("click", deleteBooks);
     })
-
-    readStats = document.querySelectorAll(".status");
-    readStats.forEach((readStat) => {
-        readStat.addEventListener("click", toggle);
-    })
-
-};
-
-function toggle() {
-    if(this.textContent === "Want to Read") {
-        this.textContent = "Currently Reading";
-    } else if(this.textContent === "Currently Reading") {
-        this.textContent = "Read";
-    } else if(this.textContent === "Read") {
-        this.textContent = "Want to Read";
-    }
 };
 
 
