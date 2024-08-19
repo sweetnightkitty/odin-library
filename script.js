@@ -5,22 +5,26 @@ const submitBtn = document.querySelector(".submit-form");
 let bookNumber = 0;
 let myLibrary = [];
 
-function Book(title, author, pages, status) {
-    bookNumber += 1; //Unique book # can be used to set dataset values for the card, deleteBtn and toggle
-    this.number = bookNumber;
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.status = status;
-};
+class Book {
+    constructor(title, author, pages, status) {
+        //Unique book # can be used to set dataset values for the card, deleteBtn and toggle
+        bookNumber += 1;
+        this.number = bookNumber;
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.status = status;
+    }
 
-Book.prototype.toggleStatus = function() {
-    if(this.status === "Read") {
-        this.status = "Want to Read";
-    } else if(this.status === "Want to Read") {
-        this.status = "Read";
+    toggleStatus() {
+        if(this.status === "Read") {
+            this.status = "Want to Read";
+        } else if(this.status === "Want to Read") {
+            this.status = "Read";
+        }
     }
 }
+
 
 function addBookToMyLibrary() {
     const title = document.getElementById("title").value;
