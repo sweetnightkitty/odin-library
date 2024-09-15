@@ -2,8 +2,15 @@ const openBtn = document.querySelector(".modal-btn");
 const modal = document.querySelector(".modal");
 const closeBtn = document.querySelector(".close");
 const submitBtn = document.querySelector(".submit-form");
+
+const form = document.querySelector("form");
+const title = document.getElementById("title");
+const author = document.getElementById("author");
+const pages = document.getElementById("pages");
+
 let bookNumber = 0;
 let myLibrary = [];
+
 
 class Book {
     constructor(title, author, pages, status) {
@@ -133,12 +140,6 @@ function closeModal() {
     form.reset();
 }
 
-submitBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    addBookToMyLibrary();
-    displayMyLibrary();
-    closeModal();
-})
 
 function resetMyLibrary() {
     const container = document.querySelector(".container");
@@ -151,4 +152,49 @@ function resetMyLibrary() {
 function getStatus(radioSelection) {
     if(radioSelection === "want") return "Want to Read";
     if(radioSelection === "read") return "Read";
+}
+
+
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const error = checkForErrors();
+    let errorMessage;
+
+    if(error != "none") {
+        errorMessage = getErrorMessage(error);
+
+        error.setCustomValidity(errorMessage);
+        error.reportValidity();
+    } else {
+        addBookToMyLibrary();
+        displayMyLibrary();
+        closeModal();
+    }
+
+})
+
+function checkForErrors() {
+    if(title.validity.valueMissing) {
+        return title;
+    } else if(author.validity.valueMissing) {
+        return author;
+    } else if(pages.validity.valueMissing) {
+        return pages;
+    } else {
+        return "none";
+    }
+}
+
+function getErrorMessage(element) {
+    let message;
+
+    if(element == title) {
+        message = "Please enter a book title";
+    } else if(element == author) {
+        message = "Please enter the author's name";
+    } else if(element == pages) {
+        message = "Please enter the number of pages in the book";
+    }
+
+    return message;
 }
