@@ -7,6 +7,7 @@ const form = document.querySelector("form");
 const title = document.getElementById("title");
 const author = document.getElementById("author");
 const pages = document.getElementById("pages");
+const readStatusRadios = document.getElementsByName("readStatus");
 
 let bookNumber = 0;
 let myLibrary = [];
@@ -163,8 +164,14 @@ form.addEventListener("submit", (e) => {
     if(error != "none") {
         errorMessage = getErrorMessage(error);
 
-        error.setCustomValidity(errorMessage);
-        error.reportValidity();
+        if(error == readStatusRadios) {
+            readStatusRadios[1].setCustomValidity(errorMessage);
+            readStatusRadios[1].reportValidity();
+        } else {
+            error.setCustomValidity(errorMessage);
+            error.reportValidity();
+        }
+
     } else {
         addBookToMyLibrary();
         displayMyLibrary();
@@ -180,6 +187,8 @@ function checkForErrors() {
         return author;
     } else if(pages.validity.valueMissing) {
         return pages;
+    } else if(readStatusRadios[0].validity.valueMissing && readStatusRadios[1].validity.valueMissing) {
+        return readStatusRadios;
     } else {
         return "none";
     }
@@ -194,6 +203,8 @@ function getErrorMessage(element) {
         message = "Please enter the author's name";
     } else if(element == pages) {
         message = "Please enter the number of pages in the book";
+    } else if(element == readStatusRadios) {
+        message = "Please select if you have read this book already, or if you want to read it";
     }
 
     return message;
